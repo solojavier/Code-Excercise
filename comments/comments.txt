@@ -1,0 +1,22 @@
+
+General comments:
+
+* The code in general is good, clean and concise, which is awesome.
+* jar files should not be committed to the source control system. They should be managed with a dependency management system such as ivy, maven, gradle, etc.
+* If I wanted to make a change to the project and rebuild it, how could I do it? There's no information about this in the README file.
+* Printing everything into the console across classes makes it a console-only program. In other words, if we would like to reuse some of these classes for other kind of app (a web app maybe) we would have to
+  rewrite all the system outs to a logger. Why not use a logger from the beginning to prevent this?
+* The file names to be opened and outputted is configuration, and as such it should be handled externally (properties files, providing command-line arguments, etc.)
+
+Unit test comments:
+* Unit tests are good in general, also the test cases.
+* For the FileScanner tests, every time we run the tests we are accessing the file system, which is slow. With big files, tests would take a while. Why not use mocks to get mocking data instead of the real file
+  input and avoid hitting the file system directly?
+
+Source control:
+* Commits should be unique, atomic and frequent. This project had a single commit only :(
+
+The rest of the comments have been directly added to the code.
+
+Regards,
+

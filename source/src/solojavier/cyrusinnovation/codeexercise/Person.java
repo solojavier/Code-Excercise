@@ -15,7 +15,8 @@ public class Person {
 	private String 	gender;
 	private Date 	dateOfBirth;
 	private String 	favoriteColor;
-	
+
+    /* Comparators are part of the domain, which is good (instead of being in separate classes) */
 	
 	/**
 	 * It can be used to sort persons by Gender (Female before Male), then Last Name ascending.
@@ -52,8 +53,11 @@ public class Person {
 				return person2.getLastName().compareTo(person1.getLastName());
 			}
 	};
-	
+
 	Person(){
+        /* on one hand, this will avoid nullPointers across the system. On the other hand, if you have millions
+        of objects it will increment the amount of memory. A Null object pattern instead maybe?
+         */
 		lastName="";
 		firstName="";
 		gender="";
@@ -79,22 +83,27 @@ public class Person {
 	 * @param dateFormat Format used to parse dateOfBirth
 	 */
 	Person(ArrayList<String> values,String insertOrder,String dateFormat) {
-		
+
 		lastName = values.get(Character.getNumericValue(insertOrder.charAt(0)));
 		firstName = values.get(Character.getNumericValue(insertOrder.charAt(1)));
 		gender = values.get(Character.getNumericValue(insertOrder.charAt(2)));
 		favoriteColor = values.get(Character.getNumericValue(insertOrder.charAt(4)));
 		
 		if(gender.equals("M")){
+            /** Maybe an Enum or a couple of constants here for gender? */
 			gender = "Male";
 		}else if (gender.equals("F")){
 			gender = "Female";
 		}
 		
 		try {
+        /* Putting so many sentences in a single line is potentially dangerous. How would you know for sure
+        what was the problem if the program fails here? */
 			dateOfBirth = (Date)new SimpleDateFormat(dateFormat).parse(values.get(Character.getNumericValue(insertOrder.charAt(3))));
 		} catch (ParseException e) {
+            /* Avoid code duplication. values.get(Character.getNumericValue(insertOrder.charAt(3))) is two times in this block */
 			System.out.println("Date: '" + values.get(Character.getNumericValue(insertOrder.charAt(3))) + "' couldn't be parsed with dateFormat: '" + dateFormat + "'");
+            /* If the date of birth is in the wrong format then we just create a new one? I think this should just fail */
 			dateOfBirth = new Date();
 		}
 	}

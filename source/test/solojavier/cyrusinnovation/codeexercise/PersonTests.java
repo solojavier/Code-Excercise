@@ -1,12 +1,11 @@
 package solojavier.cyrusinnovation.codeexercise;
 
+import junit.framework.TestCase;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-
-import org.junit.Test;
-
-import junit.framework.TestCase;
 
 public class PersonTests extends TestCase{
 	
@@ -21,7 +20,9 @@ public class PersonTests extends TestCase{
 		lines.add("Tan");
 		lines.add("2/13/1943");
 		Person person = new Person(lines,InputFiles.COMMA.getOrder(),InputFiles.COMMA.getDateFormat());		
-		
+
+        /* Where do you test the toString() method? You should be checking value by value on the Person POJO, and have a test
+        * for the toString() method as well */
 		assertEquals(person.toString(),"Abercrombie Neil Male 2/13/1943 Tan");
     }
 	

@@ -1,14 +1,21 @@
 package solojavier.cyrusinnovation.codeexercise;
 
-import java.util.ArrayList;
-import org.junit.Test;
 import junit.framework.TestCase;
+import org.junit.Test;
+
+import java.util.ArrayList;
 
 
+/* Good unit test */
 public class FileScannerTests extends TestCase{
-	
+
+    // TODO never used
+    /* Remove what you don't need */
 	FileScanner pipeFileScanner;
 	FileScanner spaceFileScanner;
+
+    /* In all the test cases you are initializing an ArrayList. This could be done in the setup() method instead of each test.
+     * And digging deeper, getLines() will never return an empty ArrayList :) */
 	
 	@Test
     public void testGetLinesCommaFile()   

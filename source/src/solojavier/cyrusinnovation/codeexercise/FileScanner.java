@@ -33,10 +33,12 @@ public ArrayList<String> getLines() {
       }
       return linesList;
     }catch(FileNotFoundException e){
+        /* Maybe this should just fail and let the implementer to handle this? */
     	System.out.println("File not found: " + file.getName());
     	return linesList;
     }
     finally {
+      /* If the scanner was never initialized, this will throw a NPE */
       scanner.close();
     }
   }

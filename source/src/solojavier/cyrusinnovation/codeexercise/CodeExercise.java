@@ -11,7 +11,8 @@ import java.util.*;
  * 
  */
 public class CodeExercise {
-	
+
+    /* This should be externalized so that it can be configurable without recompiling*/
 	public static final String outputFile = "output_files\\model_output.txt";
 	
 	public static void main (String args[]){
@@ -35,6 +36,7 @@ public class CodeExercise {
 			ArrayList<String> lines = scanner.getLines();
 			
 			for(String line : lines){
+                /* Why not just use String.split() to get the values? */
 				ArrayList<String> values = scanner.getLineValues(line,file.getDelimiter());
 				persons.add(new Person(values,file.getOrder(),file.getDateFormat()));			
 			}
