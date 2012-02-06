@@ -10,7 +10,6 @@ public class AllTests {
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Test for solojavier");
 		//$JUnit-BEGIN$
-		suite.addTestSuite(CodeExerciseTests.class);
 		suite.addTestSuite(FileScannerTests.class);
 		suite.addTestSuite(PersonTests.class);
 		//$JUnit-END$

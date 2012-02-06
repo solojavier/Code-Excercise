@@ -50,7 +50,7 @@ public ArrayList<String> getLines() {
  * @param delimiter Delimiter used to separate elements.
  * @return ArrayList<String> list with values.
  */
-public ArrayList<String> getLineValues(String line, String delimiter){
+public static ArrayList<String> getLineValues(String line, String delimiter){
 	  
 	  ArrayList<String> list = new ArrayList<String>();
 	  Scanner scanner = new Scanner(line);
