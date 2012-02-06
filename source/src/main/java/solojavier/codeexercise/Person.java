@@ -15,7 +15,6 @@ public class Person {
 	private String 	gender;
 	private Date 	dateOfBirth;
 	private String 	favoriteColor;
-
     /* Comparators are part of the domain, which is good (instead of being in separate classes) */
 	
 	/**
@@ -82,7 +81,7 @@ public class Person {
 	 * @param insertOrder Contains position of elements to be inserted
 	 * @param dateFormat Format used to parse dateOfBirth
 	 */
-	Person(ArrayList<String> values,String insertOrder,String dateFormat) {
+	Person(ArrayList<String> values,String insertOrder,String dateFormat) throws ParseException {
 
 		lastName = values.get(Character.getNumericValue(insertOrder.charAt(0)));
 		firstName = values.get(Character.getNumericValue(insertOrder.charAt(1)));
@@ -96,16 +95,10 @@ public class Person {
 			gender = "Female";
 		}
 		
-		try {
         /* Putting so many sentences in a single line is potentially dangerous. How would you know for sure
         what was the problem if the program fails here? */
-			dateOfBirth = (Date)new SimpleDateFormat(dateFormat).parse(values.get(Character.getNumericValue(insertOrder.charAt(3))));
-		} catch (ParseException e) {
-            /* Avoid code duplication. values.get(Character.getNumericValue(insertOrder.charAt(3))) is two times in this block */
-			System.out.println("Date: '" + values.get(Character.getNumericValue(insertOrder.charAt(3))) + "' couldn't be parsed with dateFormat: '" + dateFormat + "'");
-            /* If the date of birth is in the wrong format then we just create a new one? I think this should just fail */
-			dateOfBirth = new Date();
-		}
+		dateOfBirth = (Date)new SimpleDateFormat(dateFormat).parse(values.get(Character.getNumericValue(insertOrder.charAt(3))));
+
 	}
 	
 	public String toString(){

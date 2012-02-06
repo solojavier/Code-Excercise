@@ -13,11 +13,11 @@ Repo has the following structure:
 
 To compile project, go to /source and use this command(*1):
 
-	mvn package
+	mvn package assembly:single
 
 It will generate Code-Exercise-1.0.jar file under source/target, copy it to /bin folder and you can run jar using this command:
 
-	java -jar Code-Exercise-1.0.jar
+	java -jar Code-Excercise-1.0-jar-with-dependencies.jar
 
 It print in console message "Done." and output_files/model_output.txt will be generated. If error occurs it will be printed in console.
 

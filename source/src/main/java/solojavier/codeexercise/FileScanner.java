@@ -2,6 +2,7 @@ package solojavier.codeexercise;
 
 import java.io.*;
 import java.util.*;
+import org.apache.log4j.*;
 
 /**
  * @author javier.cervantes
@@ -11,8 +12,11 @@ import java.util.*;
 public class FileScanner {
   
   private final File file;
+
+  private Logger logger;
 	
   public FileScanner(String fileName){ 
+    logger = Logger.getRootLogger();
     file = new File(fileName);  
   }
   
@@ -34,7 +38,7 @@ public ArrayList<String> getLines() {
       return linesList;
     }catch(FileNotFoundException e){
         /* Maybe this should just fail and let the implementer to handle this? */
-    	System.out.println("File not found: " + file.getName());
+    	logger.error("File not found: " + file.getName());
     	return linesList;
     }
     finally {

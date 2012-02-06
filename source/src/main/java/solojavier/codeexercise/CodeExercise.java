@@ -2,6 +2,7 @@ package solojavier.codeexercise;
 
 import java.io.*;
 import java.util.*;
+import org.apache.log4j.*;
 
 /**
  * @author javier.cervantes
@@ -14,6 +15,12 @@ public class CodeExercise {
 
     /* This should be externalized so that it can be configurable without recompiling*/
 	public static final String outputFile = "output_files\\model_output.txt";
+
+	private Logger logger;
+
+	public CodeExercise(){
+		logger = Logger.getRootLogger();
+	}
 	
 	public static void main (String args[]){
 		new CodeExercise().run();
@@ -42,7 +49,7 @@ public class CodeExercise {
 			}
 		}
 		writeOutputFile(persons);
-		System.out.println("Done.");
+		logger.info("Done.");
 	}
 	
 	/**
@@ -75,7 +82,7 @@ public class CodeExercise {
 			out.write("\n");
 			out.close();
 		} catch (IOException e) {
-			System.out.println("Error writting output file");
+			logger.error("Error writting output file");
 		}
 	}
 }
