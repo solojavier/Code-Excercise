@@ -46,22 +46,4 @@ public ArrayList<String> getLines() {
       scanner.close();
     }
   }
-  
- /**
- * Breaks a line containing several elements into a values list.
- * 
- * @param line Line with several elements in it.
- * @param delimiter Delimiter used to separate elements.
- * @return ArrayList<String> list with values.
- */
-public static ArrayList<String> getLineValues(String line, String delimiter){
-	  
-	  ArrayList<String> list = new ArrayList<String>();
-	  Scanner scanner = new Scanner(line);
-	  scanner.useDelimiter(delimiter);
-	  while ( scanner.hasNext() ){
-	      list.add(scanner.next().trim());
-	  }
-	  return list;
-  }
 }

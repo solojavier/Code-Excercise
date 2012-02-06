@@ -22,19 +22,6 @@ public class FileScannerTests extends TestCase{
 		assertEquals(values.get(2),"Kelly, Sue, Female, Pink, 7/12/1959");
     }*/
 	
-	@Test
-    public void testGetLineValuesCommaFile()   
-    {
-		
-		values = FileScanner.getLineValues("Abercrombie, Neil, Male, Tan, 2/13/1943", ",");
-		
-		assertEquals(values.get(0),"Abercrombie");
-		assertEquals(values.get(1),"Neil");
-		assertEquals(values.get(2),"Male");
-		assertEquals(values.get(3),"Tan");
-		assertEquals(values.get(4),"2/13/1943");
-    }
-	
 	/*Needs refactor to avoid use of the file system
 	@Test
     public void testGetLinesPipeFile()   
@@ -48,19 +35,6 @@ public class FileScannerTests extends TestCase{
 		assertEquals(values.get(2),"Bouillon | Francis | G | M | Blue | 6-3-1975");
     }
 	*/
-
-	@Test
-    public void testGetLineValuesPipeFile()   
-    {
-		values = FileScanner.getLineValues("Smith | Steve | D | M | Red | 3-3-1985", "\\|");
-
-		assertEquals(values.get(0),"Smith");
-		assertEquals(values.get(1),"Steve");
-		assertEquals(values.get(2),"D");
-		assertEquals(values.get(3),"M");
-		assertEquals(values.get(4),"Red");
-		assertEquals(values.get(5),"3-3-1985");
-    }
 	
 	/*Needs refactor to avoid use of the file system
 	@Test
@@ -75,17 +49,4 @@ public class FileScannerTests extends TestCase{
 		assertEquals(values.get(2),"Seles Monica H F 12-2-1973 Black");
     }
 	*/
-	
-	@Test
-    public void testGetLineValuesSpaceFile()   
-    {		
-		values = FileScanner.getLineValues("Kournikova Anna F F 6-3-1975 Red", " ");
-
-		assertEquals(values.get(0),"Kournikova");
-		assertEquals(values.get(1),"Anna");
-		assertEquals(values.get(2),"F");
-		assertEquals(values.get(3),"F");
-		assertEquals(values.get(4),"6-3-1975");
-		assertEquals(values.get(5),"Red");
-    }
 }

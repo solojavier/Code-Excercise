@@ -2,6 +2,7 @@ package solojavier.codeexercise;
 
 import java.io.*;
 import java.util.*;
+import java.text.*;
 import org.apache.log4j.*;
 
 /**
@@ -22,7 +23,7 @@ public class CodeExercise {
 		logger = Logger.getRootLogger();
 	}
 	
-	public static void main (String args[]){
+	public static void main (String args[]) throws ParseException {
 		new CodeExercise().run();
 	}
 	
@@ -33,7 +34,7 @@ public class CodeExercise {
 	 * 
 	 * @see InputFiles
 	 */
-	public void run(){
+	public void run() throws ParseException {
 	
 		List<Person> persons = new ArrayList<Person>();
 		
@@ -43,8 +44,7 @@ public class CodeExercise {
 			ArrayList<String> lines = scanner.getLines();
 			
 			for(String line : lines){
-                /* Why not just use String.split() to get the values? */
-				ArrayList<String> values = scanner.getLineValues(line,file.getDelimiter());
+				List<String> values =  Arrays.asList(line.split(file.getDelimiter()));
 				persons.add(new Person(values,file.getOrder(),file.getDateFormat()));			
 			}
 		}

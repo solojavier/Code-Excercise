@@ -81,12 +81,12 @@ public class Person {
 	 * @param insertOrder Contains position of elements to be inserted
 	 * @param dateFormat Format used to parse dateOfBirth
 	 */
-	Person(ArrayList<String> values,String insertOrder,String dateFormat) throws ParseException {
+	Person(List<String> values,String insertOrder,String dateFormat) throws ParseException {
 
-		lastName = values.get(Character.getNumericValue(insertOrder.charAt(0)));
-		firstName = values.get(Character.getNumericValue(insertOrder.charAt(1)));
-		gender = values.get(Character.getNumericValue(insertOrder.charAt(2)));
-		favoriteColor = values.get(Character.getNumericValue(insertOrder.charAt(4)));
+		lastName = values.get(Character.getNumericValue(insertOrder.charAt(0))).trim();
+		firstName = values.get(Character.getNumericValue(insertOrder.charAt(1))).trim();
+		gender = values.get(Character.getNumericValue(insertOrder.charAt(2))).trim();
+		favoriteColor = values.get(Character.getNumericValue(insertOrder.charAt(4))).trim();
 		
 		if(gender.equals("M")){
             /** Maybe an Enum or a couple of constants here for gender? */
