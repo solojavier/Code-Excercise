@@ -1,4 +1,4 @@
-package solojavier.cyrusinnovation.codeexercise;
+package solojavier.codeexercise;
 
 import java.text.*;
 import java.util.*;

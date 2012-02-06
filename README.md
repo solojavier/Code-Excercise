@@ -13,7 +13,7 @@ Repo has the following structure:
 
 To run this project, go to /bin and run jar using this command:
 
-	java -jar Cyrusinnovation-Code-Exercise.jar
+	java -jar Code-Exercise.jar
 
 It print in console message "Done." and output_files/model_output.txt will be generated. If error occurs it will be printed in console.
 

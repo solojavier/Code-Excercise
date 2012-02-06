@@ -1,4 +1,4 @@
-package solojavier.cyrusinnovation.codeexercise;
+package solojavier.codeexercise;
 
 /* Need some documentation here. How would a programmer know what's this enum used for? */
 enum InputFiles {

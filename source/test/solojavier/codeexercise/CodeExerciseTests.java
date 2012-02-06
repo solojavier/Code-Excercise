@@ -1,4 +1,4 @@
-package solojavier.cyrusinnovation.codeexercise;
+package solojavier.codeexercise;
 
 import java.io.File;
 
@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 import junitx.framework.FileAssert;
 import org.junit.Test;
 
-import solojavier.cyrusinnovation.codeexercise.CodeExercise;
+import solojavier.codeexercise.CodeExercise;
 
 public class CodeExerciseTests extends TestCase
 {	

@@ -1,4 +1,4 @@
-package solojavier.cyrusinnovation.codeexercise;
+package solojavier.codeexercise;
 
 import org.junit.runner.JUnitCore;
 
@@ -19,6 +19,6 @@ public class AllTests {
 	
 	public static void main(String[] args) throws Exception {                    
 	       JUnitCore.main(
-	         "solojavier.cyrusinnovation.codeexercise.AllTests");            
+	         "solojavier.codeexercise.AllTests");            
 	}
 }

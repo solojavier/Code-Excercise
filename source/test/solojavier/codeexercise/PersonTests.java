@@ -1,4 +1,4 @@
-package solojavier.cyrusinnovation.codeexercise;
+package solojavier.codeexercise;
 
 import junit.framework.TestCase;
 import org.junit.Test;
