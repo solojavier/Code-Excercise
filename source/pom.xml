@@ -5,7 +5,7 @@
   <artifactId>Code-Excercise</artifactId>
   <packaging>jar</packaging>
   <version>1.0</version>
-  <name>Java skills project</name>
+  <name>Code Excercise</name>
   <url>https://github.com/solojavier/Code-Excercise</url>
   <build>
     <plugins>
