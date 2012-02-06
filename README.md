@@ -11,10 +11,19 @@ Repo has the following structure:
 	* /source			: Source code
 	* /doc 				: Javadoc files source code and bin used only to run the application. 
 
-To run this project, go to /bin and run jar using this command:
+To compile project, go to /source and use this command(*1):
 
-	java -jar Code-Exercise.jar
+	mvn package
+
+It will generate Code-Exercise-1.0.jar file under source/target, copy it to /bin folder and you can run jar using this command:
+
+	java -jar Code-Exercise-1.0.jar
 
 It print in console message "Done." and output_files/model_output.txt will be generated. If error occurs it will be printed in console.
 
-JUnit (4.9) tests were written for this project also, so you can run them with eclipse IDE or manually. Also junit-addons (1.4) was used, required jars are found under /source/lib
+To run tests, go to /source and use this command(*1):
+
+	mvn test -Dtest=AllTests
+
+
+(*1) You will require [Maven](http://maven.apache.org/) installed on your enviroment.
