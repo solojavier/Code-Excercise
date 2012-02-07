@@ -81,7 +81,7 @@ public class Person {
 	 * @param insertOrder Contains position of elements to be inserted
 	 * @param dateFormat Format used to parse dateOfBirth
 	 */
-	Person(List<String> values,String insertOrder,String dateFormat) throws ParseException {
+	public Person(List<String> values,String insertOrder,String dateFormat) throws ParseException {
 
 		lastName = values.get(Character.getNumericValue(insertOrder.charAt(0))).trim();
 		firstName = values.get(Character.getNumericValue(insertOrder.charAt(1))).trim();

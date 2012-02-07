@@ -44,22 +44,28 @@ public class CodeExercise {
 	public void run() {
 	
 		List<Person> persons = new ArrayList<Person>();
+		String inputPath = properties.getProperty("input.path");
+		String[] filename = properties.getProperty("input.files").split(" ");
+		String[] delimiter = properties.getProperty("input.delimiter").split(" ");
+		String[] dateFormat = properties.getProperty("input.dateformat").split(" ");
+		String[] order = properties.getProperty("input.order").split(" ");
 
-		for (InputFiles file : InputFiles.values()) {
+		for(int i=0; i<filename.length;i++){
 			try{
-				List<String> lines = FileUtils.getLines(file.getPath());
+				List<String> lines = FileUtils.getLines(inputPath+"/"+filename[i]);
 			
 				for(String line : lines){
 					//TODO - Al hacer el split, falta hacer un trim a cada valor (de momento se encuentra en person)
-					List<String> values =  Arrays.asList(line.split(file.getDelimiter()));
-					persons.add(new Person(values,file.getOrder(),file.getDateFormat()));			
+					List<String> values =  Arrays.asList(line.split(delimiter[i]));
+					persons.add(new Person(values,order[i],dateFormat[i]));			
 				}
 			}catch(FileNotFoundException e){
-				logger.error("File not found was skipped: "+file.getPath());
+				logger.error("File not found was skipped: "+inputPath);
 			}catch (ParseException e){
-				logger.error("There was an error parsing dates in file: "+file.getPath());
+				logger.error("There was an error parsing dates in file: "+inputPath);
 			}
 		}
+
 		writeOutputFile(persons);
 		logger.info("Done.");
 	}
