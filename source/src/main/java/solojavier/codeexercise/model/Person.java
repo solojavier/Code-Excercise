@@ -1,4 +1,4 @@
-package solojavier.codeexercise;
+package solojavier.codeexercise.model;
 
 import java.text.*;
 import java.util.*;
@@ -15,47 +15,10 @@ public class Person {
 	private String 	gender;
 	private Date 	dateOfBirth;
 	private String 	favoriteColor;
-    /* Comparators are part of the domain, which is good (instead of being in separate classes) */
-	
-	/**
-	 * It can be used to sort persons by Gender (Female before Male), then Last Name ascending.
-	 */
-	static final Comparator<Person> GENDER_ORDER =
-	    new Comparator<Person>() {
-			public int compare(Person person1, Person person2) {
-				int genderCompare = person1.getGender().compareTo(person2.getGender());
-		        if (genderCompare != 0)
-		            return genderCompare;
-		        return (person1.getLastName().compareTo(person2.getLastName()));
-			}
-	};
-	
-	/**
-	 * It can be used to sort persons by Date of Birth ascending, then Last Name ascending.
-	 */
-	static final Comparator<Person> DATE_ORDER =
-	    new Comparator<Person>() {
-			public int compare(Person person1, Person person2) {
-				int dateCompare = person1.getDateOfBirth().compareTo(person2.getDateOfBirth());
-				if (dateCompare != 0)
-		            return dateCompare;
-		        return (person1.getLastName().compareTo(person2.getLastName()));
-			}
-	};
-
-	/**
-	 * It can be used to sort persons by Last Name descending.
-	 */
-	static final Comparator<Person> LAST_NAME_ORDER =
-	    new Comparator<Person>() {
-			public int compare(Person person1, Person person2) {
-				return person2.getLastName().compareTo(person1.getLastName());
-			}
-	};
 
 	public Person(){
         /* on one hand, this will avoid nullPointers across the system. On the other hand, if you have millions
-        of objects it will increment the amount of memory. A Null object pattern instead maybe?
+        of objects it wiiill increment the amount of memory. A Null object pattern instead maybe?
          */
 		lastName="";
 		firstName="";

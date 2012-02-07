@@ -1,4 +1,4 @@
-package solojavier.codeexercise;
+package solojavier.codeexercise.model;
 
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -6,28 +6,28 @@ import java.util.*;
 import java.text.*;
 
 public class PersonTests extends TestCase{
-	
+
+	private Properties properties;
+
 	@Test
     public void testNewPersonCommaFile() throws ParseException  
     {
-		ArrayList<String> lines = new ArrayList<String>();
+		List<String> lines = new ArrayList<String>();
 		
 		lines.add("Abercrombie");
 		lines.add("Neil");
 		lines.add("Male");
 		lines.add("Tan");
 		lines.add("2/13/1943");
-		Person person = new Person(lines,InputFiles.COMMA.getOrder(),InputFiles.COMMA.getDateFormat());		
+		Person person = new Person(lines,"01243","M/dd/yyyy");		
 
-        /* Where do you test the toString() method? You should be checking value by value on the Person POJO, and have a test
-        * for the toString() method as well */
 		assertEquals(person.toString(),"Abercrombie Neil Male 2/13/1943 Tan");
     }
 	
 	@Test
     public void testNewPersonPipeFile() throws ParseException  
     {
-		ArrayList<String> lines = new ArrayList<String>();
+		List<String> lines = new ArrayList<String>();
 		
 		lines.add("Smith");
 		lines.add("Steve");
@@ -35,7 +35,7 @@ public class PersonTests extends TestCase{
 		lines.add("M");
 		lines.add("Red");
 		lines.add("3-3-1985");
-		Person person = new Person(lines,InputFiles.PIPE.getOrder(),InputFiles.PIPE.getDateFormat());
+		Person person = new Person(lines,"01354","M-dd-yyyy");
 		
 		assertEquals(person.toString(),"Smith Steve Male 3/3/1985 Red");
     }
@@ -43,7 +43,7 @@ public class PersonTests extends TestCase{
 	@Test
     public void testNewPersonSpaceFile() throws ParseException  
     {
-		ArrayList<String> lines = new ArrayList<String>();
+		List<String> lines = new ArrayList<String>();
 
 		lines.add("Kournikova");
 		lines.add("Anna");
@@ -51,7 +51,7 @@ public class PersonTests extends TestCase{
 		lines.add("F");
 		lines.add("6-3-1975");
 		lines.add("Red");
-		Person person = new Person(lines,InputFiles.SPACE.getOrder(),InputFiles.SPACE.getDateFormat());
+		Person person = new Person(lines,"01345","M-dd-yyyy");
 		
 		assertEquals(person.toString(),"Kournikova Anna Female 6/3/1975 Red");
     }
@@ -59,7 +59,7 @@ public class PersonTests extends TestCase{
 	@Test
 	public void testOrderPersonsGender()   
     {
-		ArrayList<Person> persons = new ArrayList<Person>();
+		List<Person> persons = new ArrayList<Person>();
 		Person person1 = new Person();
 		Person person2 = new Person();
 		Person person3 = new Person();
@@ -73,7 +73,7 @@ public class PersonTests extends TestCase{
 		persons.add(person1);
 		persons.add(person2);
 		persons.add(person3);
-		Collections.sort(persons, Person.GENDER_ORDER);
+		Collections.sort(persons, new PersonGenderComparator());
 
 		assertEquals(persons.get(0).getLastName(),"person3");
 		assertEquals(persons.get(1).getLastName(),"person1");
@@ -83,7 +83,7 @@ public class PersonTests extends TestCase{
 	@Test
 	public void testOrderPersonsDate()   
     {
-		ArrayList<Person> persons = new ArrayList<Person>();
+		List<Person> persons = new ArrayList<Person>();
 		Person person1 = new Person();
 		Person person2 = new Person();
 		Person person3 = new Person();
@@ -97,7 +97,7 @@ public class PersonTests extends TestCase{
 		persons.add(person1);
 		persons.add(person2);
 		persons.add(person3);
-		Collections.sort(persons, Person.DATE_ORDER);
+		Collections.sort(persons, new PersonDateComparator());
 
 		assertEquals(persons.get(0).getLastName(),"person3");
 		assertEquals(persons.get(1).getLastName(),"person2");
@@ -107,7 +107,7 @@ public class PersonTests extends TestCase{
 	@Test
 	public void testOrderPersonsLastName()   
     {
-		ArrayList<Person> persons = new ArrayList<Person>();
+		List<Person> persons = new ArrayList<Person>();
 		Person person1 = new Person();
 		Person person2 = new Person();
 		Person person3 = new Person();
@@ -118,7 +118,7 @@ public class PersonTests extends TestCase{
 		persons.add(person3);
 		persons.add(person2);
 		persons.add(person1);
-		Collections.sort(persons, Person.LAST_NAME_ORDER);
+		Collections.sort(persons, new PersonLastNameComparator());
 
 		assertEquals(persons.get(0).getLastName(),"person3");
 		assertEquals(persons.get(1).getLastName(),"person2");

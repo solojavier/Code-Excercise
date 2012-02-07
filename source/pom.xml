@@ -16,7 +16,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>solojavier.codeexercise.CodeExercise</mainClass>
+              <mainClass>solojavier.codeexercise.app.CodeExercise</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -30,7 +30,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>solojavier.codeexercise.CodeExercise</mainClass>
+              <mainClass>solojavier.codeexercise.app.CodeExercise</mainClass>
             </manifest>
           </archive>
         </configuration>

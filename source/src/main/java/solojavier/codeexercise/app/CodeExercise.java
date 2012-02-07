@@ -1,16 +1,17 @@
-package solojavier.codeexercise;
+package solojavier.codeexercise.app;
 
 import java.io.*;
 import java.util.*;
 import java.text.*;
 import solojavier.utils.*;
+import solojavier.codeexercise.model.*;
 import org.apache.log4j.*;
 
 /**
  * @author javier.cervantes
  *
- * Program that builds a master list of people from three data files, 
- * then prints it to console, sorted in three different ways.
+ * Program that builds a master list of people from different data files, 
+ * then prints it to console, sorted in different ways.
  * 
  */
 public class CodeExercise {
@@ -27,7 +28,6 @@ public class CodeExercise {
 		}catch (IOException e){
 			logger.error("Problem occureed loading properties file: "+PROP_FILE);
 		}
-		
 	}
 	
 	public static void main (String args[]) {
@@ -35,15 +35,29 @@ public class CodeExercise {
 	}
 	
 	/**
-	 * Entry point for the application. Iterates over defined "InputFiles"
-	 * to get the persons listed and add them to a persons list.
+	 * Entry point for the application.
+	 * Get the persons listed on input data and add them to a persons list.
 	 * Finally it outputs the list of persons in outputFile.
 	 * 
 	 * @see InputFiles
 	 */
-	public void run() {
-	
+	public void run() {	
+		List<Person> persons = getInputData();
+		writeOutputFile(persons);
+		logger.info("Done.");
+	}
+
+	/**
+	 * Reads properties file to get input files and reads data to convert it
+	 * to a Person list
+	 * 
+	 * @see Person
+	 * @return persons list of persons from imput files
+	 */
+	private List<Person> getInputData(){
+
 		List<Person> persons = new ArrayList<Person>();
+
 		String inputPath = properties.getProperty("input.path");
 		String[] filename = properties.getProperty("input.files").split(" ");
 		String[] delimiter = properties.getProperty("input.delimiter").split(" ");
@@ -59,6 +73,7 @@ public class CodeExercise {
 					List<String> values =  Arrays.asList(line.split(delimiter[i]));
 					persons.add(new Person(values,order[i],dateFormat[i]));			
 				}
+
 			}catch(FileNotFoundException e){
 				logger.error("File not found was skipped: "+inputPath);
 			}catch (ParseException e){
@@ -66,8 +81,7 @@ public class CodeExercise {
 			}
 		}
 
-		writeOutputFile(persons);
-		logger.info("Done.");
+		return persons;
 	}
 	
 	/**
@@ -77,24 +91,24 @@ public class CodeExercise {
 	 * @see Person
 	 * @param persons list of persons to write in file
 	 */
-	public void writeOutputFile(List<Person> persons){
+	private void writeOutputFile(List<Person> persons){
 		try {
 			String outputFile = properties.getProperty("output.file");
 			BufferedWriter out = new BufferedWriter(new FileWriter(outputFile));
 		    out.write("Output 1:\n");
-			Collections.sort(persons, Person.GENDER_ORDER);
+			Collections.sort(persons, new PersonGenderComparator());
 			for (Person person : persons){
 				out.write(person.toString()+"\n");
 			}
 			out.write("\n");
 			out.write("Output 2:\n");
-			Collections.sort(persons, Person.DATE_ORDER);
+			Collections.sort(persons, new PersonDateComparator());
 			for (Person person : persons){
 				out.write(person.toString()+"\n");
 			}
 			out.write("\n");
 			out.write("Output 3:\n");
-			Collections.sort(persons, Person.LAST_NAME_ORDER);
+			Collections.sort(persons, new PersonLastNameComparator());
 			for (Person person : persons){
 				out.write(person.toString()+"\n");
 			}

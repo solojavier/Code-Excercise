@@ -5,11 +5,11 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class FileScannerTests extends TestCase{
+public class FileUtilsTests extends TestCase{
 
-	ArrayList<String> values;
+	/*ArrayList<String> values;
 
-	/*Needs refactor to avoid use of the file system
+	Needs refactor to avoid use of the file system
 	@Test
     public void testGetLinesCommaFile()   
     {
