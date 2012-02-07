@@ -2,15 +2,13 @@ package solojavier.codeexercise;
 
 import junit.framework.TestCase;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
+import java.text.*;
 
 public class PersonTests extends TestCase{
 	
 	@Test
-    public void testNewPersonCommaFile()   
+    public void testNewPersonCommaFile() throws ParseException  
     {
 		ArrayList<String> lines = new ArrayList<String>();
 		
@@ -27,7 +25,7 @@ public class PersonTests extends TestCase{
     }
 	
 	@Test
-    public void testNewPersonPipeFile()   
+    public void testNewPersonPipeFile() throws ParseException  
     {
 		ArrayList<String> lines = new ArrayList<String>();
 		
@@ -43,7 +41,7 @@ public class PersonTests extends TestCase{
     }
 	
 	@Test
-    public void testNewPersonSpaceFile()   
+    public void testNewPersonSpaceFile() throws ParseException  
     {
 		ArrayList<String> lines = new ArrayList<String>();
 

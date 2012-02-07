@@ -3,6 +3,7 @@ package solojavier.codeexercise;
 import java.io.*;
 import java.util.*;
 import java.text.*;
+import solojavier.utils.*;
 import org.apache.log4j.*;
 
 /**
@@ -14,16 +15,22 @@ import org.apache.log4j.*;
  */
 public class CodeExercise {
 
-    /* This should be externalized so that it can be configurable without recompiling*/
-	public static final String outputFile = "output_files\\model_output.txt";
+	private static final String PROP_FILE = "/codeexercise.properties";
 
+	private Properties properties;
 	private Logger logger;
 
 	public CodeExercise(){
 		logger = Logger.getRootLogger();
+		try{
+			properties = FileUtils.readPropertiesFile(PROP_FILE);
+		}catch (IOException e){
+			logger.error("Problem occureed loading properties file: "+PROP_FILE);
+		}
+		
 	}
 	
-	public static void main (String args[]) throws ParseException {
+	public static void main (String args[]) {
 		new CodeExercise().run();
 	}
 	
@@ -34,18 +41,23 @@ public class CodeExercise {
 	 * 
 	 * @see InputFiles
 	 */
-	public void run() throws ParseException {
+	public void run() {
 	
 		List<Person> persons = new ArrayList<Person>();
-		
+
 		for (InputFiles file : InputFiles.values()) {
+			try{
+				List<String> lines = FileUtils.getLines(file.getPath());
 			
-			FileScanner scanner = new FileScanner(file.getPath());
-			ArrayList<String> lines = scanner.getLines();
-			
-			for(String line : lines){
-				List<String> values =  Arrays.asList(line.split(file.getDelimiter()));
-				persons.add(new Person(values,file.getOrder(),file.getDateFormat()));			
+				for(String line : lines){
+					//TODO - Al hacer el split, falta hacer un trim a cada valor (de momento se encuentra en person)
+					List<String> values =  Arrays.asList(line.split(file.getDelimiter()));
+					persons.add(new Person(values,file.getOrder(),file.getDateFormat()));			
+				}
+			}catch(FileNotFoundException e){
+				logger.error("File not found was skipped: "+file.getPath());
+			}catch (ParseException e){
+				logger.error("There was an error parsing dates in file: "+file.getPath());
 			}
 		}
 		writeOutputFile(persons);
@@ -61,6 +73,7 @@ public class CodeExercise {
 	 */
 	public void writeOutputFile(List<Person> persons){
 		try {
+			String outputFile = properties.getProperty("output.file");
 			BufferedWriter out = new BufferedWriter(new FileWriter(outputFile));
 		    out.write("Output 1:\n");
 			Collections.sort(persons, Person.GENDER_ORDER);
