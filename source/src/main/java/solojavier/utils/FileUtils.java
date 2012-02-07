@@ -13,6 +13,7 @@ public abstract class FileUtils {
  /**
  * Iterates over file getting each line and storing it in a list.
  * If file is not found, returns an empty list.
+ * @throws FileNotFoundException
  * 
  * @return ArrayList<String> List with lines contained in file
  */
@@ -32,7 +33,12 @@ public abstract class FileUtils {
     return linesList;
   }
 
-//Falta comentar
+ /**
+ * Reads properties file contents
+ * 
+ * @return Properties object with properties read
+ * @throws IOException
+ */
   public static Properties readPropertiesFile(String fileName) throws IOException{  
      InputStream inputStream = FileUtils.class.getResourceAsStream(fileName);  
      Properties properties = new Properties();  
@@ -42,25 +48,4 @@ public abstract class FileUtils {
      
      return properties;
   }
-
-  /**
-   * Iterates over a directory to get file names contained in it.
-   * If file is not found or path is not a directory, returns an empty list.
-   * 
-   * @return ArrayList<String> List with lines contained in file
-   */
-/*  public static List<String> getFilesInPath(String path) throws FileNotFoundException{
-    File folder = new File(path);
-    List<String> fileNames = new ArrayList<String>();
-
-    if(folder.isDirectory()){
-      for (File fileEntry : folder) {
-        if (!fileEntry.isDirectory()) {
-          fileNames.add(fileEntry.getName());
-        }
-      }
-    }
-    return fileNames;
-  }
-  */
 }

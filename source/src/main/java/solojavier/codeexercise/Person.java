@@ -53,7 +53,7 @@ public class Person {
 			}
 	};
 
-	Person(){
+	public Person(){
         /* on one hand, this will avoid nullPointers across the system. On the other hand, if you have millions
         of objects it will increment the amount of memory. A Null object pattern instead maybe?
          */
